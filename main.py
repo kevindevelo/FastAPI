@@ -8,7 +8,7 @@ app = FastAPI()
 class Index(BaseModel):
     index:int
 
-def fibonacci_get(index:int) -> int:
+def get_fibonacci(index:int) -> int:
     firt_number:int = 1;
     secondary_number:int = 1;
     counter:int = 1;
@@ -42,8 +42,8 @@ def get_hello():
     return {"response": "Hello FastAPI"}
 
 
-@app.get("/isprime/{number}")
-def validate_primo(number:int):
+@app.get("/IsPrime/{number}")
+def validate_prime(number:int):
     assert type(number) == int, "Error, debe ingresar un numero";
     counter = 0;
     out = False;
@@ -58,9 +58,9 @@ def validate_primo(number:int):
     return {"response": out}
 
 @app.post("/fibonacci")
-async def get_fibonacci(index:Index):
+async def search_fibonacci(index:Index):
     if index.index <= 0:
         return {"response": "El parametro de entrada debe ser mayor a 0."}
     else:
-        out = fibonacci_get(index.index)
+        out = get_fibonacci(index.index)
         return {"response":out}
